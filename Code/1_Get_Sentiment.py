@@ -45,7 +45,7 @@ df2 = df.with_columns([
     pl.col("emotion2").list.get(0).struct.field("score").alias("emotion2_score_1"),
     pl.col("emotion2").list.get(1).struct.field("label").alias("emotion2_label_2"),
     pl.col("emotion2").list.get(1).struct.field("score").alias("emotion2_score_2"),
-])
+]).drop('text')
 
 df2 = df2.with_columns(
     pl.col("sentiment1_label").replace({"POSITIVE": "positive","NEGATIVE": "negative"}).alias("sentiment1_label"),
@@ -54,11 +54,11 @@ df2 = df2.with_columns(
 
 
 #Writes out the updated dataset
-df2.write_parquet("./Data/silver/f_lines_sentimate.parquet")
+df2.write_parquet("./Data/silver/f_lines_sentiment.parquet")
 
 df2 = df2.drop([
     col for col, dtype in df.schema.items()
     if dtype.base_type() in (pl.Struct, pl.List)
 ])
-df2.write_csv("./Data/silver/f_lines_sentimate.csv")
+df2.write_csv("./Data/silver/f_lines_sentiment.csv")
 
