@@ -1,0 +1,27 @@
+[project]
+name = "star-trek-tng"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Michael Holt", email = "mjholt02@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "ipywidgets>=8.1.9",
+    "kagglehub>=1.0.2",
+    "keyring>=25.7.0",
+    "pandas>=3.0.5",
+    "polars>=1.43.2",
+    "pyarrow>=25.0.1",
+    "torch>=2.13.0",
+    "tqdm>=4.70.0",
+    "transformers>=5.15.0",
+]
+
+[project.scripts]
+star-trek-tng = "star_trek_tng:main"
+
+[build-system]
+requires = ["uv_build>=0.12.0,<0.13.0"]
+build-backend = "uv_build"
